@@ -1,0 +1,13 @@
+{
+  "name": "@ph-fritsche/eslint-config-react",
+  "version": "0.1.0",
+  "private": true,
+  "peerDependencies": {
+    "eslint-plugin-jest": "^24",
+    "eslint-plugin-jest-dom": "^3",
+    "eslint-plugin-jsx-a11y": "^6",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-react-hooks": "^4",
+    "eslint-plugin-testing-library": "^3"
+  },
+}
