@@ -29,6 +29,14 @@ let config = {
         "operator-linebreak": [2, "before"],
         "quotes": [2, "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
     },
+    "overrides": [
+        {
+          "files": ["test/**", "src/**.test.js"],
+          "rules": {
+            "react/prop-types": 0
+          }
+        }
+    ],
 };
 
 if (process.env.NODE_ENV === 'development') {
