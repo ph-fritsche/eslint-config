@@ -24,6 +24,7 @@ let config = {
         'comma-dangle': [2, 'always-multiline'],
         'comma-spacing': 2,
         'eol-last': 2,
+        'indent': 2,
         'jsx-quotes': [2, 'prefer-double'],
         'no-trailing-spaces': 2,
         'operator-linebreak': [2, 'before'],
