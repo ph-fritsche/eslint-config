@@ -1,7 +1,5 @@
 {
   "name": "@ph-fritsche/eslint-config-react",
-  "version": "0.1.0",
-  "private": true,
   "peerDependencies": {
     "eslint": "^7",
     "eslint-plugin-jest": "^24",
