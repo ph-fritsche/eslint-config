@@ -1,5 +1,9 @@
 {
-  "name": "@ph-fritsche/eslint-config-react",
+  "name": "@ph-fritsche/eslint-config",
+  "description": "Shared eslint-config",
+  "repository": "https://github.com/ph-fritsche/eslint-config.git",
+  "author": "Philipp Fritsche",
+  "license": "MIT",
   "peerDependencies": {
     "eslint": ">=7"
   },
