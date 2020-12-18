@@ -13,11 +13,7 @@ let config = {
     },
     'extends': [
         'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
-        'plugin:jest/recommended',
-        'plugin:jest-dom/recommended',
         'plugin:testing-library/recommended',
     ],
     'rules': {
@@ -37,15 +33,41 @@ let config = {
                 'react/prop-types': 0,
             },
         },
-        {
-            files: ['**.{ts,tsx}'],
-            parser: '@typescript-eslint/parser',
-            extends: [
-                'plugin:@typescript-eslint/recommended',
-            ],
-        },
     ],
-};
+}
+
+function moduleExists(moduleName) {
+    try {
+        require.resolve(moduleName)
+        return true
+    } catch(e) {
+        return false
+    }
+}
+
+if (moduleExists('typescript')) {
+    config.overrides.push({
+        files: ['**.{ts,tsx}'],
+        parser: '@typescript-eslint/parser',
+        extends: [
+            'plugin:@typescript-eslint/recommended',
+        ],
+    })
+}
+
+if (moduleExists('jest')) {
+    config.extends.push(
+        'plugin:jest/recommended',
+        'plugin:jest-dom/recommended',
+    )
+}
+
+if (moduleExists('react')) {
+    config.extends.push(
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+    )
+}
 
 if (process.env.NODE_ENV === 'development') {
     config.rules = {...config.rules,
