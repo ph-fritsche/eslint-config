@@ -26,6 +26,7 @@ let config = {
         'operator-linebreak': [2, 'before'],
         'quotes': [2, 'single', {'avoidEscape': true, 'allowTemplateLiterals': true}],
     },
+    'settings': {},
     'overrides': [
         {
             'files': ['test/**', 'src/**.test.*'],
@@ -67,6 +68,9 @@ if (moduleExists('react')) {
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
     )
+    config.settings.react = {
+        version: 'detect',
+    }
 }
 
 if (process.env.NODE_ENV === 'development') {
