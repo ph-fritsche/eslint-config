@@ -32,10 +32,17 @@ let config = {
     },
     'overrides': [
         {
-          'files': ['test/**', 'src/**.test.js'],
-          'rules': {
-            'react/prop-types': 0,
-          },
+            'files': ['test/**', 'src/**.test.*'],
+            'rules': {
+                'react/prop-types': 0,
+            },
+        },
+        {
+            files: ['**.{ts,tsx}'],
+            parser: '@typescript-eslint/parser',
+            extends: [
+                'plugin:@typescript-eslint/recommended',
+            ],
         },
     ],
 };
