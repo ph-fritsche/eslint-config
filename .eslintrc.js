@@ -25,6 +25,7 @@ let config = {
         'no-trailing-spaces': 2,
         'operator-linebreak': [2, 'before'],
         'quotes': [2, 'single', {'avoidEscape': true, 'allowTemplateLiterals': true}],
+        'semi': [2, 'never', { beforeStatementContinuationChars: 'always' }],
     },
     'settings': {},
     'overrides': [
