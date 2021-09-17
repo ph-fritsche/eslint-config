@@ -30,6 +30,9 @@ let config = {
     'settings': {},
     'overrides': [
         {
+            files: ['**.jsx'],
+        },
+        {
             'files': ['test/**', 'src/**.test.*'],
             'rules': {
                 'react/prop-types': 0,
