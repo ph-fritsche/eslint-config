@@ -33,7 +33,7 @@ let config = {
             files: ['**.jsx', '**.{cjs,mjs}'],
         },
         {
-            'files': ['test/**', 'src/**.test.*'],
+            'files': ['test/**', '**.test.*', '**.stories.*'],
             'rules': {
                 'react/prop-types': 0,
             },
