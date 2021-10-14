@@ -30,7 +30,7 @@ let config = {
     'settings': {},
     'overrides': [
         {
-            files: ['**.jsx'],
+            files: ['**.jsx', '**.{cjs,mjs}'],
         },
         {
             'files': ['test/**', 'src/**.test.*'],
