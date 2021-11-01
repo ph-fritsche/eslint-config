@@ -1,22 +1,28 @@
 let config = {
-    'parserOptions': {
-        'ecmaVersion': 11,
-        'sourceType': 'module',
-        'ecmaFeatures': {
-            'jsx': true,
+    ignorePatterns: [
+        '/build/',
+        '/dist/',
+        '/node_modules/',
+        '/var/',
+    ],
+    parserOptions: {
+        ecmaVersion: 11,
+        sourceType: 'module',
+        ecmaFeatures: {
+            jsx: true,
         },
     },
-    'env': {
-        'browser': true,
-        'es6': true,
-        'node': true,
+    env: {
+        browser: true,
+        es6: true,
+        node: true,
     },
-    'extends': [
+    extends: [
         'eslint:recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:testing-library/recommended',
     ],
-    'rules': {
+    rules: {
         'comma-dangle': [2, 'always-multiline'],
         'comma-spacing': 2,
         'eol-last': 2,
@@ -24,17 +30,17 @@ let config = {
         'jsx-quotes': [2, 'prefer-double'],
         'no-trailing-spaces': 2,
         'operator-linebreak': [2, 'before'],
-        'quotes': [2, 'single', {'avoidEscape': true, 'allowTemplateLiterals': true}],
+        'quotes': [2, 'single', {avoidEscape: true, allowTemplateLiterals: true}],
         'semi': [2, 'never', { beforeStatementContinuationChars: 'always' }],
     },
-    'settings': {},
-    'overrides': [
+    settings: {},
+    overrides: [
         {
             files: ['**.jsx', '**.{cjs,mjs}'],
         },
         {
-            'files': ['test/**', '**.test.*', '**.stories.*'],
-            'rules': {
+            files: ['test/**', '**.test.*', '**.stories.*'],
+            rules: {
                 'react/prop-types': 0,
             },
         },
