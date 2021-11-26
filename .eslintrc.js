@@ -20,7 +20,7 @@ let config = {
     extends: [
         'eslint:recommended',
         'plugin:jsx-a11y/recommended',
-        'plugin:testing-library/recommended',
+        'plugin:testing-library/dom',
     ],
     rules: {
         'comma-dangle': [2, 'always-multiline'],
@@ -77,6 +77,7 @@ if (moduleExists('react')) {
     config.extends.push(
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
+        'plugin:testing-library/react',
     )
     config.settings.react = {
         version: 'detect',
