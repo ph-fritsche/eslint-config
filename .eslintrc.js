@@ -60,9 +60,27 @@ if (moduleExists('typescript')) {
     config.overrides.push({
         files: ['**.{ts,tsx}'],
         parser: '@typescript-eslint/parser',
+        parserOptions: {
+            project: './tsconfig.json',
+        },
         extends: [
             'plugin:@typescript-eslint/recommended',
         ],
+        rules: {
+            // The following rules are documented as `recommended`, but are not part of the config.
+            // See https://github.com/typescript-eslint/typescript-eslint/issues/4224
+            '@typescript-eslint/await-thenable': 1,
+            '@typescript-eslint/no-floating-promises': [2,  {ignoreVoid: true}],
+            '@typescript-eslint/no-for-in-array': 2,
+            '@typescript-eslint/no-unnecessary-type-assertion': 1,
+            '@typescript-eslint/no-unsafe-argument': 1,
+            '@typescript-eslint/no-unsafe-assignment': 1,
+            '@typescript-eslint/no-unsafe-call': 1,
+            '@typescript-eslint/no-unsafe-member-access': 1,
+            '@typescript-eslint/no-unsafe-return': 1,
+            '@typescript-eslint/restrict-plus-operands': 2,
+            '@typescript-eslint/restrict-template-expressions': [2, { allowNumber: true}],
+        },
     })
 }
 

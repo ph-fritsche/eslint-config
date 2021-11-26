@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "target": "ES3",
+        "module": "ESNext",
+        "noEmit": true,
+    },
+    "include": [
+        ".",
+    ],
+}
