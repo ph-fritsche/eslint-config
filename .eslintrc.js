@@ -20,7 +20,6 @@ let config = {
     extends: [
         'eslint:recommended',
         'plugin:jsx-a11y/recommended',
-        'plugin:testing-library/dom',
     ],
     rules: {
         'comma-dangle': [2, 'always-multiline'],
@@ -65,20 +64,15 @@ if (moduleExists('typescript')) {
         },
         extends: [
             'plugin:@typescript-eslint/recommended',
+            'plugin:@typescript-eslint/recommended-requiring-type-checking',
         ],
         rules: {
-            // The following rules are documented as `recommended`, but are not part of the config.
-            // See https://github.com/typescript-eslint/typescript-eslint/issues/4224
-            '@typescript-eslint/await-thenable': 1,
             '@typescript-eslint/no-floating-promises': [2,  {ignoreVoid: true}],
-            '@typescript-eslint/no-for-in-array': 2,
-            '@typescript-eslint/no-unnecessary-type-assertion': 1,
             '@typescript-eslint/no-unsafe-argument': 1,
             '@typescript-eslint/no-unsafe-assignment': 1,
             '@typescript-eslint/no-unsafe-call': 1,
             '@typescript-eslint/no-unsafe-member-access': 1,
             '@typescript-eslint/no-unsafe-return': 1,
-            '@typescript-eslint/restrict-plus-operands': 2,
             '@typescript-eslint/restrict-template-expressions': [2, { allowNumber: true}],
         },
     })
@@ -100,6 +94,10 @@ if (moduleExists('react')) {
     config.settings.react = {
         version: 'detect',
     }
+} else {
+    config.extends.push(
+        'plugin:testing-library/dom',
+    )
 }
 
 if (process.env.NODE_ENV === 'development') {
