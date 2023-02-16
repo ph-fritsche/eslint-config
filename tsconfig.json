@@ -5,6 +5,7 @@
         "target": "ES3",
         "module": "ESNext",
         "noEmit": true,
+        "lib": ["ESNext"],
     },
     "include": [
         ".",

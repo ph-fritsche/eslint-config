@@ -1,1 +1,1 @@
-module.exports = require('./.eslintrc.js')
+export {default as default} from './eslint.config.js'

@@ -8,6 +8,7 @@
   "repository": "https://github.com/ph-fritsche/eslint-config.git",
   "author": "Philipp Fritsche",
   "license": "MIT",
+  "type": "module",
   "peerDependencies": {
     "eslint": ">=7"
   },
