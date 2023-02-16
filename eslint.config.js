@@ -26,7 +26,7 @@ const config = [
 
 config.push(
     {
-        files: ['**.{jsx,tsx}'],
+        files: ['**/*.{jsx,tsx}'],
         plugins: {
             'jsx-a11y': JsxA11y,
         },
@@ -37,14 +37,14 @@ config.push(
 if (moduleExists('jest')) {
     config.push(
         {
-            files: ['test/**', 'tests/**', '**.{test,spec}.{js,jsx,ts,tsx}'],
+            files: ['test/**', 'tests/**', '**/*.{test,spec}.{js,jsx,ts,tsx}'],
             plugins: {
                 'jest': Jest,
             },
             rules: Jest.configs.recommended.rules,
         },
         {
-            files: ['test/**', 'tests/**', '**.{test,spec}.{js,jsx,ts,tsx}'],
+            files: ['test/**', 'tests/**', '**/*.{test,spec}.{js,jsx,ts,tsx}'],
             plugins: {
                 'jest-dom': JestDom,
             },
@@ -93,7 +93,7 @@ if (moduleExists('react')) {
 if (moduleExists('typescript')) {
     config.push(
         {
-            files: ['**.{ts,tsx}'],
+            files: ['**/*.{ts,tsx}'],
             plugins: {
                 'tsParser': {
                     parsers: {
@@ -109,7 +109,7 @@ if (moduleExists('typescript')) {
             },
         },
         {
-            files: ['**.{ts,tsx}'],
+            files: ['**/*.{ts,tsx}'],
             plugins: {
                 '@typescript-eslint': TsLint,
             },
@@ -123,7 +123,7 @@ if (moduleExists('typescript')) {
             },
         },
         {
-            files: ['**.{ts,tsx}'],
+            files: ['**/*.{ts,tsx}'],
             rules: {
                 '@typescript-eslint/no-floating-promises': [2, { ignoreVoid: true }],
                 '@typescript-eslint/no-unsafe-argument': 1,
@@ -152,10 +152,10 @@ config.push(
         },
     },
     {
-        files: ['**.jsx', '**.{cjs,mjs}'],
+        files: ['**/*.{js,jsx,cjs,mjs}'],
     },
     {
-        files: ['test/**', '**.test.*', '**.stories.*'],
+        files: ['test/**', '**/*.{test,spec}.*', '**/*.stories.*'],
         rules: {
             'react/prop-types': 0,
         },
