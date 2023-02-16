@@ -9,6 +9,7 @@ import JestDom from 'eslint-plugin-jest-dom'
 import React from 'eslint-plugin-react'
 import ReactHooks from 'eslint-plugin-react-hooks'
 import TestingLibrary from 'eslint-plugin-testing-library'
+import globals from 'globals'
 
 const require = createRequire(import.meta.url)
 function moduleExists(moduleName) {
@@ -42,6 +43,9 @@ if (moduleExists('jest')) {
                 'jest': Jest,
             },
             rules: Jest.configs.recommended.rules,
+            languageOptions: {
+                globals: globals.jest,
+            },
         },
         {
             files: ['test/**', 'tests/**', '**/*.{test,spec}.{js,jsx,ts,tsx}'],
