@@ -9,6 +9,7 @@
   "author": "Philipp Fritsche",
   "license": "MIT",
   "type": "module",
+  "main": "./index.js",
   "peerDependencies": {
     "eslint": ">=7"
   },
