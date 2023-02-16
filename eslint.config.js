@@ -41,7 +41,7 @@ if (moduleExists('jest')) {
             plugins: {
                 'jest': Jest,
             },
-            rules: Jest.config.recommended.rules,
+            rules: Jest.configs.recommended.rules,
         },
         {
             files: ['test/**', 'tests/**', '**.{test,spec}.{js,jsx,ts,tsx}'],
