@@ -130,6 +130,7 @@ if (moduleExists('typescript')) {
             files: ['**/*.{ts,tsx}'],
             rules: {
                 'no-undef': 0,
+                'no-redeclare': 0,
                 '@typescript-eslint/no-floating-promises': [2, { ignoreVoid: true }],
                 '@typescript-eslint/no-unsafe-argument': 1,
                 '@typescript-eslint/no-unsafe-assignment': 1,
