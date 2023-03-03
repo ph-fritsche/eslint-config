@@ -184,6 +184,7 @@ config.push(
     {
         ignores: [
             'build/**',
+            'coverage/**',
             'dist/**',
             'node_modules/**',
             'var/**',
