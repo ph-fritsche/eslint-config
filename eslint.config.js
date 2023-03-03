@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module'
 import process from 'node:process'
 
+import eslint from '@eslint/js'
 import TsParser from '@typescript-eslint/parser'
 import JsxA11y from 'eslint-plugin-jsx-a11y'
 import TsLint from '@typescript-eslint/eslint-plugin'
@@ -22,7 +23,7 @@ function moduleExists(moduleName) {
 }
 
 const config = [
-    'eslint:recommended',
+    eslint.configs.recommended,
 ]
 
 config.push(
