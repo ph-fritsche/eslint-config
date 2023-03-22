@@ -88,7 +88,7 @@ if (moduleExists('react')) {
     config.push(
         {
             plugins: {
-                '@testing-library': TestingLibrary,
+                'testing-library': TestingLibrary,
             },
             rules: TestingLibrary.configs.dom.rules,
         },
