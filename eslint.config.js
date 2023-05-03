@@ -99,15 +99,8 @@ if (moduleExists('typescript')) {
     config.push(
         {
             files: ['**/*.{ts,tsx}'],
-            plugins: {
-                'tsParser': {
-                    parsers: {
-                        x: TsParser,
-                    },
-                },
-            },
             languageOptions: {
-                parser: 'tsParser/x',
+                parser: TsParser,
                 parserOptions: {
                     project: './tsconfig.json',
                 },
