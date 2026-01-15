@@ -4,11 +4,17 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: write
+  id-token: write
+  issues: write
+  pull-requests: write
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: bahmutov/npm-install@v1
     - run: yarn lint
     - run: yarn test
@@ -18,10 +24,10 @@ jobs:
     needs: check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: bahmutov/npm-install@v1
     - run: yarn build
     - uses: ph-fritsche/action-release@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NPM_TOKEN: OIDC
