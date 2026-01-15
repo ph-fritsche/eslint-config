@@ -252,6 +252,8 @@ config.push(
             'var/**',
             '**/__snapshots__/',
             '**/*.d.ts',
+            '**/.yarn/**',
+            '**/.pnp.*',
         ],
     },
 )
