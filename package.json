@@ -44,5 +44,6 @@
     "lint": "eslint",
     "test": "vitest",
     "build": "tsc -p tsconfig.build.json"
-  }
+  },
+  "packageManager": "yarn@4.12.0"
 }
