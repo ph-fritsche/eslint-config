@@ -12,7 +12,7 @@ import ReactHooks from 'eslint-plugin-react-hooks'
 import TestingLibrary from 'eslint-plugin-testing-library'
 import globals from 'globals'
 import {Linter} from 'eslint'
-import Stylistic from '@stylistic/eslint-plugin'
+import Stylistic, {UnprefixedRuleOptions as StylisticRuleOptions} from '@stylistic/eslint-plugin'
 
 const require = createRequire(import.meta.url)
 function moduleExists(moduleName: string) {
@@ -194,30 +194,67 @@ config.push(
 )
 
 // Stylistic
+const stylisticConfig = Stylistic.configs.customize({
+    indent: 4,
+    arrowParens: false,
+    blockSpacing: true,
+    braceStyle: '1tbs',
+    commaDangle: 'always-multiline',
+    jsx: true,
+    semi: false,
+    quoteProps: 'consistent',
+    quotes: 'single',
+})
+function setStylisticRule<k extends keyof StylisticRuleOptions>(
+    rule: k,
+    severity: 0 | 1 | 2,
+    ...options: StylisticRuleOptions[k]
+) {
+    const key = `@stylistic/${rule}`
+    stylisticConfig.rules[key] = [severity, ...options]
+}
+function adjustStylisticOptions<k extends keyof StylisticRuleOptions>(
+    rule: k,
+    ...options: Partial<StylisticRuleOptions[k]>
+) {
+    const key = `@stylistic/${rule}`
+    if (!(key in stylisticConfig.rules)) {
+        throw new Error(`Rule "${key}" is not included in config.`)
+    }
+    for (let i = 0; i < options.length; i++) {
+        const ruleConfig = stylisticConfig.rules[key]
+        const value = options[i] as unknown
+        if (value === undefined) {
+            continue
+        } else if (typeof value === 'string' || Array.isArray(value)) {
+            ruleConfig[i + 1] = value
+        } else if (value && typeof value === 'object') {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            ruleConfig[i + 1] = ({...ruleConfig[i + 1], ...value})
+        }
+    }
+}
+adjustStylisticOptions('brace-style', '1tbs', {
+    allowSingleLine: false,
+})
+adjustStylisticOptions('indent', undefined, {
+    offsetTernaryExpressions: false,
+})
+adjustStylisticOptions('semi', undefined, {
+    beforeStatementContinuationChars: 'always',
+})
+
+setStylisticRule('arrow-parens', 0)
+setStylisticRule('object-curly-spacing', 1, 'never')
+setStylisticRule('object-curly-newline', 1, {
+    multiline: true,
+    consistent: true,
+})
+setStylisticRule('semi-style', 2, 'first')
+
 config.push(
     Stylistic.configs['disable-legacy'],
-    Stylistic.configs['recommended'],
-    {
-        rules: {
-            '@stylistic/arrow-parens': 0,
-            '@stylistic/brace-style': [2, '1tbs'],
-            '@stylistic/indent': [2, 4],
-            '@stylistic/object-curly-spacing': [1, 'never'],
-            '@stylistic/object-curly-newline': [1, {
-                multiline: true,
-                consistent: true,
-            }],
-            '@stylistic/quote-props': [2, 'consistent'],
-            '@stylistic/quotes': [2, 'single', {
-                avoidEscape: true,
-                allowTemplateLiterals: 'always',
-            }],
-            '@stylistic/semi': [2, 'never', {
-                beforeStatementContinuationChars: 'always',
-            }],
-            '@stylistic/semi-style': [2, 'first'],
-        },
-    },
+    stylisticConfig,
 )
 
 if (process.env.NODE_ENV === 'development') {
