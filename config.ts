@@ -14,6 +14,9 @@ import globals from 'globals'
 import {Linter} from 'eslint'
 import Stylistic, {UnprefixedRuleOptions as StylisticRuleOptions} from '@stylistic/eslint-plugin'
 
+const isDev = (!process.env.CI || process.env.CI.toLowerCase() === 'false')
+    && (!process.env.NODE_ENV || process.env.NODE_ENV.toLowerCase() === 'development')
+
 const require = createRequire(import.meta.url)
 function moduleExists(moduleName: string) {
     try {
@@ -194,7 +197,9 @@ config.push(
 )
 
 // Stylistic
+const stylisticSeverity = isDev ? 'warn' : 'error'
 const stylisticConfig = Stylistic.configs.customize({
+    severity: stylisticSeverity,
     indent: 4,
     arrowParens: false,
     blockSpacing: true,
@@ -207,7 +212,7 @@ const stylisticConfig = Stylistic.configs.customize({
 })
 function setStylisticRule<k extends keyof StylisticRuleOptions>(
     rule: k,
-    severity: 0 | 1 | 2,
+    severity: 0 | 1 | 2 | 'off' | 'warn' | 'error',
     ...options: StylisticRuleOptions[k]
 ) {
     const key = `@stylistic/${rule}`
@@ -250,18 +255,17 @@ setStylisticRule('object-curly-newline', 1, {
     multiline: true,
     consistent: true,
 })
-setStylisticRule('semi-style', 2, 'first')
+setStylisticRule('semi-style', stylisticSeverity, 'first')
 
 config.push(
     Stylistic.configs['disable-legacy'],
     stylisticConfig,
 )
 
-if (process.env.NODE_ENV === 'development') {
+if (isDev) {
     config.push(
         {
             rules: {
-                '@stylistic/indent': 1,
                 'no-unreachable': 1,
             },
         },
