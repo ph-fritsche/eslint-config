@@ -6,12 +6,7 @@ import {cwd} from 'node:process'
 function lint(
     file: string,
 ) {
-    const child = spawn('node', [
-        'node_modules/.bin/eslint',
-        '-c',
-        'config.ts',
-        file,
-    ], {
+    const child = spawn(`node node_modules/.bin/eslint -c config.ts '${file}'`, {
         stdio: ['pipe', 'pipe', 'pipe'],
         shell: true,
         env: {

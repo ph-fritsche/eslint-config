@@ -145,10 +145,11 @@ if (moduleExists('react')) {
         },
         {
             plugins: {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                'react-hooks': ReactHooks,
+                'react-hooks': {
+                    ...ReactHooks,
+                    configs: {},
+                },
             },
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             rules: ReactHooks.configs.recommended.rules,
         },
         {
@@ -195,7 +196,7 @@ config.push(
 // Stylistic
 config.push(
     Stylistic.configs['disable-legacy'],
-    Stylistic.configs['recommended-flat'],
+    Stylistic.configs['recommended'],
     {
         rules: {
             '@stylistic/arrow-parens': 0,
@@ -209,7 +210,7 @@ config.push(
             '@stylistic/quote-props': [2, 'consistent'],
             '@stylistic/quotes': [2, 'single', {
                 avoidEscape: true,
-                allowTemplateLiterals: true,
+                allowTemplateLiterals: 'always',
             }],
             '@stylistic/semi': [2, 'never', {
                 beforeStatementContinuationChars: 'always',
